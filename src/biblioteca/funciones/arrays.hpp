@@ -8,7 +8,7 @@ template<typename T>
 int add(T arr[], int &len, T e) {
   arr[len] = e;
   len++;
-  return len;
+  return len - 1;
 }
 
 // Inserts an element in position p to the array.
