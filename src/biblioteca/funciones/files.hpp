@@ -16,21 +16,21 @@ template<typename T> T read(FILE *f) {
   return t;
 }
 
-// Moves the cursor of f to n.
+// Moves the cursor of f to the n-th record.
 template<typename T> void seek(FILE *f, int n) {
   fseek(f, sizeof(T) * n, SEEK_SET);
 }
 
-// Returns the file size in bytes / sizeof(T).
+// Returns the file size in records.
 template<typename T> int fileSize(FILE *f) {
-  long lastPos = ftell(f);
+  long lastPos = ftell(f) / sizeof(T);
   fseek(f, 0, SEEK_END);
-  long cur = ftell(f);
+  int size = ftell(f) / sizeof(T);
   seek<T>(f, lastPos);
-  return cur / sizeof(T);
+  return size;
 }
 
-// Returns the current file pos, from 0 to n.
+// Returns the current record position.
 template<typename T> int filePos(FILE *f) {
   return ftell(f) / sizeof(T);
 }
