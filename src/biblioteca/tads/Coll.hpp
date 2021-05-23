@@ -102,15 +102,14 @@ int partition(Coll<T> &c, int lo, int hi, int cmpTT(T, T), T tFromString(string)
 	tokenI = collGetAt(c, i, tFromString);
 	if (cmpTT(tokenJ, pivot) < 0) {
 	  collSwap(c, tokenJ, tokenI, j, i, tToString);
-//	  collSetAt(c, tokenJ, i, tToString);
-//	  collSetAt(c, tokenI, j, tToString);
 	  i++;
 	}
   }
   tokenI = collGetAt(c, i, tFromString);
   pivot = collGetAt(c, hi, tFromString);
-  collSetAt(c, tokenI, hi, tToString);
-  collSetAt(c, pivot, i, tToString);
+  collSwap(c, tokenI, pivot, i, hi, tToString);
+//  collSetAt(c, tokenI, hi, tToString);
+//  collSetAt(c, pivot, i, tToString);
   return i;
 }
 
@@ -137,8 +136,8 @@ void collSort(Coll<T> &c, int cmpTT(T, T), T tFromString(string), string tToStri
   int len = collSize(c);
   T t1;
   T t2;
-  bool swapped = false;
   for (int j = 0; j < len - 1; j++) {
+	bool swapped = false;
 	for (int i = 0; i < len - j; i++) {
 	  t1 = collGetAt(c, i - 1, tFromString);
 	  t2 = collGetAt(c, i, tFromString);
