@@ -35,7 +35,6 @@ int collSize(Coll<T> c) {
 // Removes all the tokens from the collection.
 template<typename T>
 void collRemoveAll(Coll<T> &c) {
-  collSize(c);
   c.tokens = "";
 }
 
@@ -108,8 +107,6 @@ int partition(Coll<T> &c, int lo, int hi, int cmpTT(T, T), T tFromString(string)
   tokenI = collGetAt(c, i, tFromString);
   pivot = collGetAt(c, hi, tFromString);
   collSwap(c, tokenI, pivot, i, hi, tToString);
-//  collSetAt(c, tokenI, hi, tToString);
-//  collSetAt(c, pivot, i, tToString);
   return i;
 }
 
