@@ -75,7 +75,7 @@ int indexOf(const string &s, const string &toSearch) {
   return -1;
 }
 
-int indexOf(const string &s, const string &toSearch, int offset) // ok
+int indexOf(const string &s, const string &toSearch, int offset)
 {
   if (offset == 0) {
 	return indexOf(s, toSearch);
@@ -111,10 +111,7 @@ int indexOfN(const string &s, char c, int n) {
 
 int charToInt(char c) {
   int v = (unsigned char)c;
-  if (v >= 48 && v <= 57) {
-	return v - 48;
-  }
-  return -1;
+  return v - 48;
 }
 
 char intToChar(int i) {
@@ -155,7 +152,7 @@ string intToString(int i) {
   return i != 0 ? num : "0";
 }
 
-int stringToInt(string s, int b) // ok
+int stringToInt(string s, int b)
 {
   int num = 0;
   for (int I = 0; I < length(s); ++I) {
