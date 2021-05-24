@@ -25,12 +25,14 @@ void insert(T arr[], int &len, T e, int p) {
 template<typename T>
 T remove(T arr[], int &len, int p) {
   T ret = arr[p];
+  arr[p] = NULL;
   for (int i = p + 1; i < len; i++) {
 	arr[i - 1] = arr[i];
   }
   if (p < len) {
 	len--;
   }
+  arr[len] = NULL;
   return ret;
 }
 
