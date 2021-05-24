@@ -18,10 +18,14 @@ void addToken(string &s, char sep, const string &t) {
 
 // Gets the i-th token from `s`.
 string getTokenAt(const string &s, char sep, int i) {
-  int fidx = indexOfN(s, sep, i);
-  fidx = fidx != length(s) ? fidx + 1 : 0;
-  int idx = indexOfN(s, sep, i + 1);
-  string substr = substring(s, fidx, idx);
+  // s=  John|Paul|George|Ringo
+  // indexOfN(s, '|', 1) == 4
+  if (i == 0) {
+	return substring(s, 0, indexOfN(s, sep, 1));
+  }
+  int fidx = indexOfN(s, sep, i) + 1; // first index + 1, we don't want the separator
+  int ifx = indexOfN(s, sep, i + 1); // last index
+  string substr = substring(s, fidx, ifx);
   return substr;
 }
 
@@ -34,7 +38,7 @@ void removeTokenAt(string &s, char sep, int i) {
 	}
 	nStr += I == 0 ? getTokenAt(s, sep, I) : sep + getTokenAt(s, sep, I);
   }
-  s = nStr;
+  s = !startsWith(nStr, charToString(sep)) ? nStr : substring(nStr, 1);
 }
 
 void setTokenAt(string &s, const char &sep, const string &t, int i) {
@@ -47,7 +51,7 @@ void setTokenAt(string &s, const char &sep, const string &t, int i) {
 	}
 	nStr += sep + getTokenAt(s, sep, j);
   }
-  s = !startsWith(nStr, "|") ? nStr : substring(nStr, 1);
+  s = !startsWith(nStr, charToString(sep)) ? nStr : substring(nStr, 1);
 }
 
 int findToken(const string &s, char sep, const string &t) {
