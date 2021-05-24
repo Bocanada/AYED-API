@@ -129,7 +129,6 @@ int getDigit(int n, int i) {
   // return n % 10
   int r;
   for (int j = i; j >= 0; j--) {
-//  while (i > 0) {
 	r = n % 10;
 	n /= 10;
   }
@@ -185,7 +184,7 @@ int stringToInt(string s, int b) // ok
   return num;
 }
 
-__attribute__((unused)) int stringToInt(string s) // ok
+int stringToInt(string s)
 {
   return stringToInt(std::move(s), 10);
 }
@@ -200,7 +199,7 @@ char stringToChar(string s) {
   return s[0];
 }
 
-__attribute__((unused)) string stringToString(string s) {
+string stringToString(string s) {
   return s;
 }
 
@@ -259,7 +258,7 @@ bool contains(const string &s, char c) {
   return cCount > 0;
 }
 
-// Replaces all occurrences of `oldChar` with `newChar` in `s`
+// Replaces all occurrences of `oldChar` with `newChar`
 string replace(const string &s, char oldChar, char newChar) {
   string newString;
   for (const char &item : s) {
@@ -280,7 +279,7 @@ string insertAt(const string &s, int pos, char c) {
 }
 
 // Removes the element at position `pos` in `s`.
-__attribute__((unused)) string removeAt(const string &s, int pos) {
+string removeAt(const string &s, int pos) {
   int sLength = length(s);
   if (pos > sLength) {
 	return s;
@@ -320,7 +319,7 @@ string rtrim(string s) {
   return nString;
 }
 // trims all whitespace.
-__attribute__((unused)) string trim(const string &s) {
+string trim(const string &s) {
   string nString = ltrim(s);
   nString = rtrim(nString);
   return nString;
@@ -335,7 +334,7 @@ string replicate(char c, int n) {
   return repl;
 }
 
-__attribute__((unused)) string spaces(int n) {
+string spaces(int n) {
   string s = replicate(' ', n);
   return s;
 }
@@ -366,7 +365,7 @@ string rpad(const string &s, int n, char c) {
   return newStr;
 }
 
-[[maybe_unused]] string cpad(const string &s, int n, char c) {
+string cpad(const string &s, int n, char c) {
   int sLen = length(s);
   int half = (n - sLen) / 2;
   string newStr = lpad(s, n, c);
@@ -376,7 +375,7 @@ string rpad(const string &s, int n, char c) {
   return newStr;
 }
 
-[[maybe_unused]] bool isDigit(char c) {
+bool isDigit(char c) {
   return charToInt(c) != -1;
 }
 
