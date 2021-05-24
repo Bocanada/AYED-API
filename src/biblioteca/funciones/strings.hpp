@@ -24,7 +24,7 @@ int charCount(const string &s, char c) {
   return n;
 }
 
-// Returns the substring of `s` between the `d` and `h` - not inclusive.
+// Returns the substring of `s` between `d` and `h` - not inclusive.
 string substring(string s, int d, int h) {
   string new_str;
   for (; d < h; d++) {
@@ -57,8 +57,7 @@ int indexOf(string s, char c) {
   return -1;
 }
 
-int indexOf(const string &s, char c, int offSet) // ok
-{
+int indexOf(const string &s, char c, int offSet) {
   if (offSet == 0) {
 	return indexOf(s, c);
   }
@@ -67,8 +66,7 @@ int indexOf(const string &s, char c, int offSet) // ok
   return i == -1 ? -1 : offSet + i;
 }
 
-int indexOf(const string &s, const string &toSearch) // ok
-{
+int indexOf(const string &s, const string &toSearch) {
   for (int i = 0; i < length(s); ++i) {
 	if (substring(s, i, i + length(toSearch)) == toSearch) {
 	  return i;
@@ -91,30 +89,24 @@ int indexOf(const string &s, const string &toSearch, int offset) // ok
 }
 
 int lastIndexOf(const string &s, char c) {
-  const string reversed = reverse(s);
-  int i = indexOf(reversed, c);
-  if (i == -1) {
-	return i;
+  for (int i = length(s); i > 0; i--) {
+	if (s[i] == c) {
+	  return i;
+	}
   }
-  return length(s) - i - 1;
+  return -1;
 }
 
 int indexOfN(const string &s, char c, int n) {
-  if (n > charCount(s, c)) {
-	return length(s);
-  } else if (n == 0) {
-	return -1;
+  for (int i = 0; i < length(s); i++) {
+    if (s[i] == c) {
+	  n--;
+    }
+    if (n == 0 ) {
+      return i;
+    }
   }
-  int tmp = indexOf(s, c, 0);
-  int idx = tmp;
-  for (int i = 1; i < n; i++) {
-	tmp = indexOf(s, c, tmp + 1);
-	if (tmp == -1) {
-	  break;
-	}
-	idx = tmp;
-  }
-  return idx;
+  return n > 0 ? length(s) : -1;
 }
 
 int charToInt(char c) {
@@ -216,7 +208,7 @@ string doubleToString(double d) {
   return "";
 }
 
-double stringToDouble(const string& s) {
+double stringToDouble(const string &s) {
   double before = 0;
   double after = 0.0;
   bool dot = false;
@@ -374,7 +366,7 @@ string rpad(const string &s, int n, char c) {
   return newStr;
 }
 
-string cpad(const string &s, int n, char c) {
+[[maybe_unused]] string cpad(const string &s, int n, char c) {
   int sLen = length(s);
   int half = (n - sLen) / 2;
   string newStr = lpad(s, n, c);
@@ -384,7 +376,7 @@ string cpad(const string &s, int n, char c) {
   return newStr;
 }
 
-bool isDigit(char c) {
+[[maybe_unused]] bool isDigit(char c) {
   return charToInt(c) != -1;
 }
 
